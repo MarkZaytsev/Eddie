@@ -1,0 +1,16 @@
+{
+    "name": "FrostLib.Services",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c8e94838933b2e845919dc48531ae674"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

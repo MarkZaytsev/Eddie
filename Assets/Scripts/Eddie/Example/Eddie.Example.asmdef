@@ -1,0 +1,21 @@
+{
+  "name": "Eddie.Example",
+  "rootNamespace": "",
+  "references": [
+    "GUID:f51ebe6a0ceec4240a699833d6309b23",
+    "GUID:b62fc2f2a104a4d4782f62625512b2f7",
+    "GUID:929169fc5a2b154438986e818a83c805",
+    "GUID:5b60568e79820b44d9468050705bb601",
+    "GUID:ab4dd1d36a2621f42b00b84ed9aa0c83",
+    "GUID:c8e94838933b2e845919dc48531ae674"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
