@@ -113,8 +113,7 @@ namespace Eddie.EventDispatching.Dispatching
             }
             finally
             {
-                if (group.DisposeSceneCancellationHookAfterHandling)
-                    onTaskFinished?.Invoke();
+                onTaskFinished?.Invoke();
             }
         }
 
@@ -159,8 +158,7 @@ namespace Eddie.EventDispatching.Dispatching
             }
             finally
             {
-                if (group.DisposeSceneCancellationHookAfterHandling)
-                    onTaskFinished?.Invoke();
+                onTaskFinished?.Invoke();
             }
         }
 

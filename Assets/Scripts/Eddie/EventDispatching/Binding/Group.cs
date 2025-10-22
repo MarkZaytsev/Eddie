@@ -8,7 +8,6 @@ namespace Eddie.EventDispatching.Binding
         public bool IsSequential;
         public bool UnbindAfterFirstExecution;
         public bool CancelOnSceneSwitch = true;
-        public bool DisposeSceneCancellationHookAfterHandling;
 
         public IEnumerable<Type> Handlers => _handlers;
 
@@ -21,8 +20,7 @@ namespace Eddie.EventDispatching.Binding
             var clone = new Group
             {
                 IsSequential = IsSequential,
-                CancelOnSceneSwitch = CancelOnSceneSwitch,
-                DisposeSceneCancellationHookAfterHandling = DisposeSceneCancellationHookAfterHandling
+                CancelOnSceneSwitch = CancelOnSceneSwitch
             };
 
             foreach (var handler in Handlers)

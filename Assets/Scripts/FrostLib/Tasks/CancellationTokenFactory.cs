@@ -16,20 +16,20 @@ namespace FrostLib.Tasks
         public (CancellationToken Token, Action OnTaskFinished) GetBeforeSceneLoadStartedToken()
         {
             var cts = new CancellationTokenSource();
-            var disposeOnTaskFinished = new ExecuteBeforeSceneLoadStartedOnce(() =>
+            var monitor = new ExecuteBeforeSceneLoadStartedOnce(() =>
             {
                 if (cts.Token.CanBeCanceled)
                     cts.Cancel();
 
                 cts.Dispose();
             });
-
+            
             return (CancellationTokenSource
                     .CreateLinkedTokenSource(
                         cts.Token,
                         GetAppClosingToken())
                     .Token,
-                OnTaskFinished: disposeOnTaskFinished.Dispose);
+                OnTaskFinished: monitor.Dispose);
         }
 
         public CancellationToken GetAppClosingToken() => _onAppClosingToken;
