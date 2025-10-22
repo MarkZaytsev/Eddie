@@ -9,11 +9,9 @@ namespace FrostLib.Coroutines
         private bool IsValid => !_isDestroyed && gameObject != null;
 
         /// Workaround for Unity bullshit.
-        /// It's possible somehow to get NellRefException on gameObject != null check if it's destroyed
-        /// Yet it should not be happening, GetComponent
-        /// <T>
-        ///     should return null if object is destroyed
-        ///     This happens when Editor stops playing. Possible Editor only case
+        /// It's possible somehow to get NullRefException on gameObject != null check if it's destroyed
+        /// Yet it should not be happening, GetComponent should return null if object is destroyed.
+        /// This happens when Editor stops playing. Possible Editor only case
         private bool _isDestroyed;
 
         public static RoutineRunner Create()
@@ -28,8 +26,8 @@ namespace FrostLib.Coroutines
             if (!stopOnSceneSwitch)
                 return StartCoroutine(routine);
 
-            var executeOnce = new ExecuteOnSceneSwitchedOnce();
-            var targetRoutine = new StopOnSceneSwitched(routine, executeOnce.Dispose).Start();
+            var executeOnce = new ExecuteBeforeSceneLoadStartedOnce();
+            var targetRoutine = new StopBeforeSceneLoadStarted(routine, executeOnce.Dispose).Start();
             var coroutine = StartCoroutine(targetRoutine);
             executeOnce.SetAction(() => StopRoutine(coroutine));
 

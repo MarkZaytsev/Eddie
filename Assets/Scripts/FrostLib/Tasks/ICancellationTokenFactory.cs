@@ -5,7 +5,7 @@ namespace FrostLib.Tasks
 {
     public interface ICancellationTokenFactory
     {
-        (CancellationToken Token, Action OnTaskFinished) GetSceneSwitchedToken();
+        (CancellationToken Token, Action OnTaskFinished) GetBeforeSceneLoadStartedToken();
         CancellationToken GetAppClosingToken();
     }
 }

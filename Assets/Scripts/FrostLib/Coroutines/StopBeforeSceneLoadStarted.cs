@@ -4,14 +4,14 @@ using FrostLib.Scenes;
 
 namespace FrostLib.Coroutines
 {
-    internal class StopOnSceneSwitched
+    internal class StopBeforeSceneLoadStarted
     {
         private readonly InterruptWrapper _wrapper;
-        private readonly ExecuteOnSceneSwitchedOnce _executor;
+        private readonly ExecuteBeforeSceneLoadStartedOnce _executor;
 
-        public StopOnSceneSwitched(IEnumerator enumerator, Action stopCallback)
+        public StopBeforeSceneLoadStarted(IEnumerator enumerator, Action stopCallback)
         {
-            _executor = new ExecuteOnSceneSwitchedOnce(OnSceneChanged);
+            _executor = new ExecuteBeforeSceneLoadStartedOnce(OnSceneChanged);
             _wrapper = new InterruptWrapper(enumerator, stopCallback, _executor.Dispose);
         }
 

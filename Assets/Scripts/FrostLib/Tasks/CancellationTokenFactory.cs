@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using FrostLib.Scenes;
 
@@ -13,10 +13,10 @@ namespace FrostLib.Tasks
         public CancellationTokenFactory(CancellationToken onAppClosingToken) =>
             _onAppClosingToken = onAppClosingToken;
 
-        public (CancellationToken Token, Action OnTaskFinished) GetSceneSwitchedToken()
+        public (CancellationToken Token, Action OnTaskFinished) GetBeforeSceneLoadStartedToken()
         {
             var cts = new CancellationTokenSource();
-            var disposeOnTaskFinished = new ExecuteOnSceneSwitchedOnce(() =>
+            var disposeOnTaskFinished = new ExecuteBeforeSceneLoadStartedOnce(() =>
             {
                 if (cts.Token.CanBeCanceled)
                     cts.Cancel();

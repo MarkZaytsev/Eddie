@@ -8,18 +8,18 @@ namespace FrostLib.Scenes
     //Unsubscribing a lot of callbacks one by one from SceneManager.activeSceneChanged is expensive
     //Essentially it's find and remove from Array. Profiler proved.
     //That is why only one callback and local hashed collection is used
-    public class ExecuteOnSceneSwitchedOnce : IDisposable
+    public class ExecuteAfterSceneSwitchedOnce : IDisposable
     {
         private static readonly Dictionary<Guid, Action> Subs = new();
         private Guid _guid;
 
-        static ExecuteOnSceneSwitchedOnce() => SceneManager.activeSceneChanged += OnSceneChanged;
+        static ExecuteAfterSceneSwitchedOnce() => SceneManager.activeSceneChanged += OnSceneChanged;
 
-        public ExecuteOnSceneSwitchedOnce()
+        public ExecuteAfterSceneSwitchedOnce()
         {
         }
 
-        public ExecuteOnSceneSwitchedOnce(Action action) => SetAction(action);
+        public ExecuteAfterSceneSwitchedOnce(Action action) => SetAction(action);
 
         public void SetAction(Action action)
         {
@@ -35,16 +35,10 @@ namespace FrostLib.Scenes
             var tempSubs = Subs.Values.ToArray();
             Subs.Clear();
 
-            foreach (var subAction in tempSubs)
-                subAction.Invoke();
+            foreach (var sub in tempSubs)
+                sub.Invoke();
         }
 
-        public void Dispose()
-        {
-            if (!Subs.ContainsKey(_guid))
-                return;
-
-            Subs.Remove(_guid);
-        }
+        public void Dispose() => Subs.Remove(_guid);
     }
 }

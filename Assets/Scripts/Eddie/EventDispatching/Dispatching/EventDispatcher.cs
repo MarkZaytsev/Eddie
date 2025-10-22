@@ -238,7 +238,7 @@ namespace Eddie.EventDispatching.Dispatching
 
         private (CancellationToken Token, Action OnTaskFinished) GetToken(bool cancelOnSceneSwitch) =>
             cancelOnSceneSwitch
-                ? _tokenFactory.GetSceneSwitchedToken()
+                ? _tokenFactory.GetBeforeSceneLoadStartedToken()
                 : (_tokenFactory.GetAppClosingToken(), null);
     }
 }
